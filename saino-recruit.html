@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>麺屋さの｜スタッフ募集</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #111;
+    color: #fff;
+    font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(160deg, #1a0000 0%, #3d0000 40%, #1a0000 100%);
+    padding: 40px 20px 50px;
+    text-align: center;
+    position: relative;
+    border-bottom: 4px solid #e00;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.02) 10px,
+      rgba(255,255,255,0.02) 20px
+    );
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: #e00;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 5px 16px;
+    border-radius: 2px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.35;
+    color: #fff;
+    position: relative;
+    text-shadow: 3px 3px 0 #e00, -1px -1px 0 #000;
+    margin-bottom: 10px;
+  }
+
+  .hero-title span {
+    color: #ff3333;
+    font-size: 36px;
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.8;
+    margin-top: 14px;
+    position: relative;
+    background: rgba(0,0,0,0.4);
+    border-left: 3px solid #e00;
+    padding: 10px 14px;
+    text-align: left;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .hero-name {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    position: relative;
+  }
+
+  .hero-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #555, #333);
+    border: 3px solid #e00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .hero-name-text {
+    text-align: left;
+  }
+
+  .hero-name-text .role {
+    font-size: 11px;
+    color: #e00;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .hero-name-text .name {
+    font-size: 20px;
+    font-weight: 900;
+    color: #fff;
+  }
+
+  .hero-name-text .desc {
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  .hero-speech {
+    margin-top: 20px;
+    background: #fff;
+    color: #111;
+    border-radius: 12px 12px 12px 4px;
+    padding: 14px 18px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.6;
+    position: relative;
+    text-align: left;
+  }
+
+  .hero-speech::before {
+    content: '💬';
+    margin-right: 6px;
+  }
+
+  .hero-speech .kansai {
+    color: #e00;
+    font-size: 17px;
+  }
+
+  /* ===== SECTION TITLE ===== */
+  .section-title {
+    text-align: center;
+    padding: 36px 20px 10px;
+  }
+
+  .section-title .en {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #e00;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .section-title .ja {
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  .section-title .ja span {
+    color: #e00;
+  }
+
+  .divider {
+    width: 40px;
+    height: 3px;
+    background: #e00;
+    margin: 10px auto 0;
+  }
+
+  /* ===== MANGA SECTION ===== */
+  .manga-section {
+    padding: 10px 0 30px;
+    background: #111;
+  }
+
+  .manga-intro {
+    text-align: center;
+    font-size: 13px;
+    color: #aaa;
+    padding: 0 20px 20px;
+    line-height: 1.7;
+  }
+
+  .manga-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .manga-panel {
+    position: relative;
+    margin: 0 16px 20px;
+    border: 3px solid #333;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+
+  .manga-panel-number {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #e00;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .manga-img-placeholder {
+    width: 100%;
+    height: 260px;
+    background: linear-gradient(160deg, #2a2a2a, #1a1a1a);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-bottom: 2px solid #333;
+  }
+
+  .manga-img-placeholder .icon {
+    font-size: 42px;
+    opacity: 0.5;
+  }
+
+  .manga-img-placeholder .label {
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 1px;
+  }
+
+  .manga-caption {
+    padding: 14px 16px;
+    background: #1a1a1a;
+  }
+
+  .manga-caption .scene {
+    font-size: 10px;
+    color: #e00;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  .manga-caption .dialogue {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+
+  .manga-caption .dialogue .speaker {
+    color: #e00;
+  }
+
+  .manga-caption .narration {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.6;
+    border-top: 1px solid #333;
+    padding-top: 8px;
+    margin-top: 4px;
+  }
+
+  /* ===== APPEAL SECTION ===== */
+  .appeal-section {
+    background: linear-gradient(180deg, #1a0000 0%, #0d0d0d 100%);
+    padding: 10px 0 40px;
+  }
+
+  .appeal-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 16px 0;
+  }
+
+  .appeal-card {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-left: 5px solid #e00;
+    border-radius: 4px;
+    padding: 20px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .appeal-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .appeal-text .title {
+    font-size: 17px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .appeal-text .title span {
+    color: #e00;
+  }
+
+  .appeal-text .desc {
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.7;
+  }
+
+  .appeal-text .tag {
+    display: inline-block;
+    background: rgba(220,0,0,0.15);
+    border: 1px solid #e00;
+    color: #e00;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-top: 8px;
+  }
+
+  /* ===== NUMBERS SECTION ===== */
+  .numbers-section {
+    background: #0d0d0d;
+    padding: 10px 0 40px;
+  }
+
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 20px 16px 0;
+  }
+
+  .number-card {
+    background: linear-gradient(135deg, #1e0000, #1e1e1e);
+    border: 1px solid #e00;
+    border-radius: 6px;
+    padding: 20px 12px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .number-card::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    background: rgba(220,0,0,0.08);
+    border-radius: 50%;
+  }
+
+  .number-card .num {
+    font-size: 44px;
+    font-weight: 900;
+    color: #e00;
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(220,0,0,0.3);
+  }
+
+  .number-card .num .unit {
+    font-size: 22px;
+  }
+
+  .number-card .label {
+    font-size: 11px;
+    color: #ccc;
+    margin-top: 6px;
+    line-height: 1.5;
+    font-weight: 700;
+  }
+
+  .number-card .sub {
+    font-size: 10px;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  .number-wide {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #2a0000, #1a0000);
+    border: 2px solid #e00;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  .number-wide .num {
+    font-size: 52px;
+    font-weight: 900;
+    color: #ff3333;
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(220,0,0,0.4);
+  }
+
+  .number-wide .label {
+    font-size: 13px;
+    color: #fff;
+    margin-top: 8px;
+    font-weight: 700;
+  }
+
+  /* ===== VOICE SECTION ===== */
+  .voice-section {
+    background: #111;
+    padding: 10px 0 40px;
+  }
+
+  .voice-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 16px 0;
+  }
+
+  .voice-card {
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 18px;
+    position: relative;
+    border: 1px solid #2a2a2a;
+  }
+
+  .voice-card::before {
+    content: '"';
+    font-size: 60px;
+    color: rgba(220,0,0,0.2);
+    position: absolute;
+    top: 0;
+    left: 10px;
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+
+  .voice-text {
+    font-size: 13px;
+    color: #ddd;
+    line-height: 1.8;
+    padding-top: 10px;
+    position: relative;
+  }
+
+  .voice-person {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  .voice-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border: 2px solid #e00;
+  }
+
+  .voice-info .name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .voice-info .detail {
+    font-size: 10px;
+    color: #888;
+  }
+
+  /* ===== MASTER MESSAGE ===== */
+  .master-section {
+    background: linear-gradient(160deg, #1a0000 0%, #0d0d0d 100%);
+    padding: 10px 0 40px;
+  }
+
+  .master-card {
+    margin: 20px 16px 0;
+    background: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #e00;
